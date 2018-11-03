@@ -2,17 +2,21 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const path = require('path');
 const massive = require('massive');
 require('dotenv').config();
 
 const app = express();
 
+// Serving static files.
 app.use(express.static(path.join(__dirname + '/build')));
 
-// Catch all for routing
-app.get('/*', (req, res)=> {
-    res.redirect('/')
-})
+// Catch all for routing.
+app.get('/*', (req, res) => {
+    res.sendFile('index.html', {
+        root: path.join(__dirname, "build")
+      })
+});
 
 app.use(cors());
 app.use(bodyParser.json());
