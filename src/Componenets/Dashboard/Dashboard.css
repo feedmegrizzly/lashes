@@ -1,0 +1,58 @@
+.title {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+
+.butt {
+    height: 100vh;
+}
+.butt-header{
+    display: flex;
+    justify-content: center;
+    font-size: 1.5em;
+}
+.mug img{
+    height: 450px;
+    border-radius: 50%;
+}
+.mug{
+    display: flex;
+    justify-content: center;
+    background-image: url('https://thumbs.dreamstime.com/z/subtle-geometric-pattern-thin-diagonal-lines-vector-minimalist-seamless-simple-monochrome-texture-repeat-tiles-abstract-97024576.jpg')
+}
+
+.bio {
+    font-family: 'Courier New', Courier, monospace;
+    padding-left: 20px;
+}
+.bio h3 {
+    display: flex;
+    justify-content: center;
+    color: red;
+    font-size: 2em;
+}
+.bio p {
+    color: black;
+}
+
+button{
+    background-color: black;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    border: none;
+    height: 50px;
+    width: 50px;
+    font-weight: bolder; 
+    font-size: 15px;
+    margin-left: 15px;
+    margin-top: 2%;
+}
+
+.social-media{
+display: flex;
+flex-direction: row;
+justify-content: flex-end;
+margin-bottom: 20px;
+margin-right: 20px;
+}

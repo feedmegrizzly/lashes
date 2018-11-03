@@ -1,0 +1,44 @@
+.App a {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  text-decoration: none;
+}
+.App a:hover {
+  text-decoration: lightblue underline;
+  transition: .3s;
+}
+
+.App p {
+  margin: auto;
+  padding: 5px;
+  bottom: 5px;
+  color: white;
+  font-size: 30px;
+  font-family: 'Courier New', Courier, monospace;
+  font-style: bold
+}
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-right: 25px;
+  background-color: black
+}
+
+.menu .name {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 0px;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+

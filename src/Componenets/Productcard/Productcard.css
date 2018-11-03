@@ -1,0 +1,21 @@
+.productCard{
+    width: 40%;
+    border: 5px lightblue solid;
+    margin: auto;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-radius: 25px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.card p{
+    color: black;
+    padding: 25px;
+    display: flex;
+    justify-content: center
+}
+.card img{
+    height: 250px;
+    border-radius: 25px;
+}
