@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 // Components
 import Dashboard from './Componenets/Dashboard/Dashboard';
-import Product from './Componenets/Product/Product';
+import Product from './Componenets/Product/Product_cd';
 import Pictures from './Componenets/Pictures/Pictures';
 import Cart from './Componenets/Cart/Cart'
 
