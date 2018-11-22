@@ -6,12 +6,14 @@ import Dashboard from './Componenets/Dashboard/Dashboard';
 import Product from './Componenets/Product/Product_cd';
 import Pictures from './Componenets/Pictures/Pictures';
 import Cart from './Componenets/Cart/Cart'
+import Login from "./Componenets/Login/Login";
 
 export default (
   <Switch>
     <Route path="/products" component={ Product } />
     <Route path="/pictures" component={ Pictures } />
     <Route path="/cart" component={ Cart } />
+    <Route path="/login" component = {Login} />
     <Route exact path="/" component={ Dashboard } />
   </Switch>
 )

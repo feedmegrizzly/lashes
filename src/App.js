@@ -10,7 +10,11 @@ class App extends Component {
 
         
       <div className="menu">
-        <p className="name">Shayla Bryant</p>
+        <p className="name">
+        <Link className= "name" to="/">
+        Shayla Bryant
+        </Link> 
+        </p>
         <Link to="/">
           <p>Home</p>
         </Link>
@@ -24,7 +28,12 @@ class App extends Component {
         </Link>
         
         <Link to="/cart">
-          <p>Cart</p>
+          <p>Schedule</p>
+        </Link>
+      </div>
+      <div className="login">
+        <Link to="/login">
+        <p>Login</p>
         </Link>
       </div>
         { routes }

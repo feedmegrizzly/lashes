@@ -28,6 +28,7 @@
 }
 
 .menu .name {
+  color: white;
   display: flex;
   justify-content: flex-start;
   margin-left: 0px;
@@ -41,4 +42,7 @@
   font-size: large;
 }
 
-
+.login p {
+  margin-top: 15px;
+  color: black
+}

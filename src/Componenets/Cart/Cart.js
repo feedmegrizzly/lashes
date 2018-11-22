@@ -1,16 +1,62 @@
 import React, { Component } from 'react';
+import Calendar from "react-big-calendar";
+import moment from "moment";
+import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
+
+import "./Car.css"
+import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+
+
+const localizer = Calendar.momentLocalizer(moment);
+
+const DnDCalendar = withDragAndDrop(Calendar);
 
 class Cart extends Component {
-    render() {
-      return (
-        <div className="Cart">
-          <header className="Cart-header">
-            <img src="http://www.cacmp.org/userfiles/2017-07/836e175f-04b8-4f3d-8135-91a22528645e.jpg?width=600" alt=""/>
-            <h1 className="Cart-title">Under Construction</h1>
-          </header>
-        </div>
-      );
-    }
+  state = {
+    events: [
+      {
+        start: new Date(),
+        end: new Date(moment().add(1, "hour")),
+        title: "Jane Doe: Regular appointment"
+      }
+    ]
+  };
+
+  onEventResize = (type, { event, start, end, allDay }) => {
+    this.setState(state => {
+      state.events[0].start = start;
+      state.events[0].end = end;
+      return { events: state.events };
+    });
+  };
+
+  onEventDrop = ({ event, start, end, allDay }) => {
+    this.setState(state => {
+      state.events[0].start = start;
+      state.events[0].end = end;
+      return { events: state.events };
+    })
+    console.log(start);
+  };
+
+  render() {
+    return (
+      <div>
+        <DnDCalendar
+          localizer={localizer}
+          defaultDate={new Date()}
+          defaultView="month"
+          events={this.state.events}
+          onEventDrop={this.onEventDrop}
+          onEventResize={this.onEventResize}
+          resizable
+          style={{ height: "100vh" }}
+        />
+      </div>
+
+    );
   }
-  
-  export default Cart;
+}
+
+export default Cart;
