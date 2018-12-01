@@ -10,6 +10,8 @@ const express = require('express'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     bcrypt = require('bcrypt'),
+    nodemailer = require('nodemailer'),
+    // emailTemplates = require('./emailTemp.js'),
     { SESSION_SECRET } = process.env;
 
 massive(process.env.DATABASE_URL)
@@ -34,14 +36,13 @@ app.use(passport.session());
 
 let attempts = 0;
 
+// Login
 passport.use('login', new LocalStrategy({
-    usernameField: 'email',
+    usernameField: 'email', // req.body.email != req.body.username
     passReqToCallback: true,
 }, (req, email, password, done) => {
-    if (attempt >= 5) {
-        done('Sorry this account has been locked')
-    } else {
         const db = req.app.get('db')
+
         db.usr.findOne({ email: email })
             .then(user => {
                 if (!user) {
@@ -65,16 +66,19 @@ passport.use('login', new LocalStrategy({
             .catch(err => {
                 done(err);
             });
-    }
 
 }));
 
+
+// Register user
 passport.use('register', new LocalStrategy({
     usernameField: 'email',
     passReqToCallback: true,
 }, (req, email, password, done) => {
     const db = req.app.get('db');
+
     // check for user. See line 45 .then if(!user)
+
     db.usr.findOne({ email: email })
         .then(user => {
             if (!user) {
@@ -99,19 +103,16 @@ passport.serializeUser((user, done) => {
     if (!user) {
         done('No user');
     }
-
     done(null, user);
-},
-);
+});
 
 passport.deserializeUser((user, done) => {
     done(null, user);
 });
 
-app.post('/login', passport.authenticate(['login']), (req, res, next) => {
+app.post('/api/login', passport.authenticate(['login']), (req, res, next) => {
     res.send('Successful Login!')
 })
-
 
 app.get('/api/product', (req, res) => {
     const db = req.app.get('db');
@@ -120,6 +121,9 @@ app.get('/api/product', (req, res) => {
             res.send(result)
         })
 })
+
+// products and users. one table to join two together. User ID and Prod ID.
+// cart = user id prod id and date added to cart. 
 
 app.get('/*', (req, res) => {
     res.sendFile('index.html', {
@@ -131,6 +135,36 @@ app.post('/api/usr', passport.authenticate(['register']), (req, res) => {
     res.send('Sucessful Register!')
 })
 
+
+// email
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    port: 993,
+    auth: {
+      user: process.env.TRANSPORTER_EMAIL,
+      pass: process.env.TRANSPORTER_PASSWORD
+    }
+  });
+
+app.post('/api/form',  (req, res, next) => {
+    console.log(req.body.name)
+    const mailOptions = {
+        name: req.body.name,
+        from: req.body.email,
+        to: process.env.TRANSPORTER_EMAIL,
+        subject: 'I would like to schedule an appointment!!',
+        message: req.body.message,
+      };
+
+    transporter.sendMail(mailOptions)
+        .then((info, err)=>{
+            res.send('Email Sent')
+        })
+        .catch((err)=>{
+            console.error(err)
+        })
+    
+})
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
     console.log(`kickin it on port ${port}`)

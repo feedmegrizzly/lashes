@@ -26,6 +26,24 @@ class Login extends Component {
         })
     }
 
+    // Handle login
+    login(e) {
+        e.preventDefault();
+        
+        let { email, password } = this.state;
+        let usr = {
+            email,
+            password
+        }
+
+        axios.post('/api/login', usr)
+            .then(res => {
+                alert("Login");
+                this.cancel();
+            })
+    }
+    
+    // Handle register
     addUser(e) {
         e.preventDefault();
 
@@ -42,22 +60,6 @@ class Login extends Component {
             })
     }
 
-    login(e) {
-        e.preventDefault();
-        debugger
-        let { email, password } = this.state;
-        let usr = {
-            email,
-            password
-        }
-
-        debugger
-        axios.post('/api/usr', usr)
-            .then(res => {
-                alert("Logged In!");
-                this.cancel();
-            })
-    }
 
     render() {
         return (

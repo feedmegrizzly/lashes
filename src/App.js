@@ -30,6 +30,9 @@ class App extends Component {
         <Link to="/cart">
           <p>Schedule</p>
         </Link>
+        <Link to="/karter">
+          <p>Cart</p>
+        </Link>
       </div>
       <div className="login">
         <Link to="/login">
