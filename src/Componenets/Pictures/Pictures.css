@@ -1,16 +1,14 @@
 .image {
     display: flex;
     flex-wrap: wrap;
-
+    justify-content: space-evenly
 }
 
 
 .image img {
-    height: 300px;
+    height: 500px;
     width: auto;
-    border: 10px solid black;
     display: flex;
-    flex-direction: row;
-
-    justify-content: center
+    justify-content: center;
+    padding: 15px
 }

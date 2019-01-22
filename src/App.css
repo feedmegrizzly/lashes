@@ -13,9 +13,10 @@
 .App p {
   margin: auto;
   padding: 5px;
+  padding-right: 10px;
   bottom: 5px;
   color: white;
-  font-size: 30px;
+  font-size: 35px;
   font-family: 'Courier New', Courier, monospace;
   font-style: bold
 }
@@ -24,7 +25,11 @@
   flex-direction: row;
   justify-content: flex-end;
   padding-right: 25px;
-  background-color: black
+  background-color: black;
+  height: 100px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
 
 .menu .name {
@@ -32,10 +37,11 @@
   display: flex;
   justify-content: flex-start;
   margin-left: 0px;
+  font-size: 45px
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 1.8em;
 }
 
 .App-intro {
@@ -43,6 +49,6 @@
 }
 
 .login p {
-  margin-top: 15px;
+  /* margin-top: 15px; */
   color: black
 }

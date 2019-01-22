@@ -6,16 +6,17 @@ import './Productcard.css'
 export default class Prodductcard extends Component {
 
     render() {
+        const { productname, description, price, img } = this.props
         return (
             <div className="productCard">
                 <div className="card">
-                    <h1>{this.props.productname}</h1>
-                    <img src={this.props.img} alt="" />
+                    <h1>{productname}</h1>
+                    <img src={img} alt="" />
                     <p>
-                        {this.props.description}
+                        {description}
                     </p>
                     <p>
-                        Price: ${this.props.price}
+                        Price: ${price}
                     </p>
                 </div>
             </div>

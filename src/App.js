@@ -35,9 +35,6 @@ class App extends Component {
         </Link>
       </div>
       <div className="login">
-        <Link to="/login">
-        <p>Login</p>
-        </Link>
       </div>
         { routes }
 

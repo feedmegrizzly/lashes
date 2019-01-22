@@ -29,7 +29,7 @@ class Login extends Component {
     // Handle login
     login(e) {
         e.preventDefault();
-        
+
         let { email, password } = this.state;
         let usr = {
             email,
@@ -42,7 +42,7 @@ class Login extends Component {
                 this.cancel();
             })
     }
-    
+
     // Handle register
     addUser(e) {
         e.preventDefault();
@@ -67,6 +67,11 @@ class Login extends Component {
                 <div className="loginCard">
                     <div className="inputs">
                         <form>
+                            <span> 
+                                <p style= {{ fontSize: "21px"}}>
+                                Please Login Here
+                                </p>
+                            </span>
                             <input classproperty="email" className="inputText" name="email" type="text" value={this.state.email} onChange={this.handleChange} placeholder="Email" />    <br />
                             <input classproperty="password" className="inputText" name="password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" value={this.state.password} onChange={this.handleChange} placeholder="Password" />          <br />
                         </form>

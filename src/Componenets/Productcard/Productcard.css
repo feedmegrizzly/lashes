@@ -1,13 +1,13 @@
 .productCard{
-    width: 40%;
+    width: 20%;
     border: 5px lightblue solid;
     margin: auto;
     text-align: center;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin: 100px;
     border-radius: 25px;
     display: flex;
     flex-wrap: wrap;
+    
 }
 .card p{
     color: black;
@@ -17,5 +17,7 @@
 }
 .card img{
     height: 250px;
+    width: 250px;
     border-radius: 25px;
+    margin: auto;
 }

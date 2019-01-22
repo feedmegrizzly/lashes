@@ -17,9 +17,9 @@ class Cart extends Component {
     events: [
       {
         start: new Date(),
-        end: new Date(moment().add(1, "hour")),
+        end: new Date(moment().add(2, "hour")),
         title: "Jane Doe: Regular appointment"
-      }
+      },
     ]
   };
 
@@ -39,6 +39,10 @@ class Cart extends Component {
     })
     console.log(start);
   };
+
+  events(){
+    
+  }
 
   render() {
     return (

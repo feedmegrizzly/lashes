@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import './Carter.css';
+import { Button, Form, FormGroup, Label, Input, Jumbotron, Container } from 'reactstrap';
+import { Link } from 'react-router-dom'
+
 
 class Carter extends Component {
     constructor(props) {
@@ -15,51 +19,61 @@ class Carter extends Component {
 
     handleChange(e) {
         this.setState({
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
+
     handleSubmit(e) {
         e.preventDefault();
-
-        const { name, email, message} = this.state;
-
+        const { name, email, message } = this.state;
         axios.post('/api/form', {
             name,
             email,
             message
         })
-
     }
 
     render() {
         return (
-            <div>
-                <form action="">
-                    <label for="name">Name:</label>
-                    <input
-                        type="text"
-                        name="name"
-                        onChange={this.handleChange}
-                    /> <br />
+            <div className='total'>
+                <Jumbotron >
+                    <Container >
+                        <h1>Ask for Appointments Here!</h1>
+                    </Container>
+                </Jumbotron>
+                <div className="email">
+                    <Form style={{ width: "600px", justifyContent: "center" }}>
+                        <FormGroup>
+                            <Label for="name">Name:</Label>
+                            <Input
+                                type="text"
+                                name="name"
+                                onChange={this.handleChange}
+                            /> <br />
+                        </FormGroup>
 
-                    <label for="email">Email:</label>
-                    <input
-                        type="email"
-                        name="email"
-                        onChange={this.handleChange}
-                    /> <br />
+                        <FormGroup></FormGroup>
+                        <Label for="email">Email:</Label>
+                        <Input
+                            type="email"
+                            name="email"
+                            onChange={this.handleChange}
+                        /> <br />
 
-                    <label for="message">Message:</label>
-                    <input
-                        type="textarea"
-                        name="message"
-                        onChange={this.handleChange}
-                        placeholder="Check for availability on the schedule!!"
-                    /> <br />
-
-                    <button onClick={this.handleSubmit}>Submit</button>
-                </form>
+                        <FormGroup></FormGroup>
+                        <Label for="message">Message:</Label>
+                        <Input className="textArea"
+                            type="textarea"
+                            name="message"
+                            onChange={this.handleChange}
+                            placeholder="Check for availability on the schedule!!"
+                        /> <br />
+                        <Link to={`/cart`}>
+                            <Button onClick={this.handleSubmit}>Submit</Button>
+                        </Link>
+                    </Form>
+                </div>
             </div>
         )
     }

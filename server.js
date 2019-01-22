@@ -41,31 +41,31 @@ passport.use('login', new LocalStrategy({
     usernameField: 'email', // req.body.email != req.body.username
     passReqToCallback: true,
 }, (req, email, password, done) => {
-        const db = req.app.get('db')
+    const db = req.app.get('db')
 
-        db.usr.findOne({ email: email })
-            .then(user => {
-                if (!user) {
-                    bcrypt.hash(password, 10)
-                        .then((password) => {
-                            return db.usr.insert({ email, password })
-                        })
-                        .then((user) => {
-                            delete user.password;
-                            done(null, user);
-                        })
-                } else if (!bcrypt.compareSync(password, user.password)) {
-                    attempts++
+    db.usr.findOne({ email: email })
+        .then(user => {
+            if (!user) {
+                bcrypt.hash(password, 10)
+                    .then((password) => {
+                        return db.usr.insert({ email, password })
+                    })
+                    .then((user) => {
+                        delete user.password;
+                        done(null, user);
+                    })
+            } else if (!bcrypt.compareSync(password, user.password)) {
+                attempts++
 
-                    return done('Invalid email or password');
-                } else {
-                    delete user.password;
-                    done(null, user);
-                }
-            })
-            .catch(err => {
-                done(err);
-            });
+                return done('Invalid email or password');
+            } else {
+                delete user.password;
+                done(null, user);
+            }
+        })
+        .catch(err => {
+            done(err);
+        });
 
 }));
 
@@ -139,31 +139,43 @@ app.post('/api/usr', passport.authenticate(['register']), (req, res) => {
 // email
 const transporter = nodemailer.createTransport({
     service: 'gmail',
-    port: 993,
     auth: {
-      user: process.env.TRANSPORTER_EMAIL,
-      pass: process.env.TRANSPORTER_PASSWORD
+        user: process.env.TRANSPORTER_EMAIL,
+        pass: process.env.TRANSPORTER_PASSWORD
     }
-  });
+});
 
-app.post('/api/form',  (req, res, next) => {
-    console.log(req.body.name)
+
+
+
+app.post('/api/form', (req, res, next) => {
+        const htmlEmail = `<h3>Contact Details</h3>
+        <ul>
+        <li>Name ${req.body.name}</li>
+        <li>Email ${req.body.email}</li>
+        </ul>
+        <h3>Message</h3>
+        <p>${req.body.message}</p>
+        `
     const mailOptions = {
         name: req.body.name,
         from: req.body.email,
-        to: process.env.TRANSPORTER_EMAIL,
+        to: 'eyelashesbyshayla@gmail.com',
         subject: 'I would like to schedule an appointment!!',
-        message: req.body.message,
-      };
+        html: htmlEmail
+    };
+
+
+
 
     transporter.sendMail(mailOptions)
-        .then((info, err)=>{
+        .then((info, err) => {
             res.send('Email Sent')
         })
-        .catch((err)=>{
+        .catch((err) => {
             console.error(err)
         })
-    
+
 })
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
